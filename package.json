@@ -1,8 +1,13 @@
 {
+  "dependencies": {
+    "typescript": "^5.1.3"
+  },
   "name": "ts-course",
   "version": "1.0.0",
-  "description": "",
   "main": "app.js",
+  "devDependencies": {
+    "lite-server": "^2.6.1"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "lite-server"
@@ -18,10 +23,5 @@
     "url": "https://github.com/petrenkodmytro/ts-course/issues"
   },
   "homepage": "https://github.com/petrenkodmytro/ts-course#readme",
-  "devDependencies": {
-    "lite-server": "^2.6.1"
-  },
-  "dependencies": {
-    "typescript": "^5.1.3"
-  }
+  "description": ""
 }
