@@ -28,9 +28,9 @@ notParam = undefined;
 // const empty = null;
 // const notParam = undefined;
 // Типи даних у функції
-function foo(num, str, bool, empty) {
-    // some logic
-}
+// function foo(num: number, str: string, bool: boolean, empty: null) {
+//   // some logic
+// }
 // Якщо ми хочемо вказати масив рядків або чисел.
 var arrString;
 var arrNumber;
@@ -109,6 +109,7 @@ function greeting(action) {
 function returnResult(num) {
     return num;
 }
+console.log(returnResult(5));
 // Ми просто після дужки вказуємо, який тип повинна повернути функція. Якщо передамо тип, який не вказаний, то отримаємо помилку.
 // Void - Це коли функція нічого не повертає.
 function print() {
@@ -131,5 +132,89 @@ generateError("An error", 500);
 function calc(param1, param2, callback) {
     console.log("Result:", callback(param1, param2));
 }
-calc(1, 1, function (num1, num2) { return num1 + num2; });
-calc(10, 5, function (num1, num2) { return num1 - num2; });
+calc(1, 1, function (num10, num20) { return num10 + num20; });
+calc(10, 5, function (num10, num20) { return num10 - num20; });
+// Призначимо тип для об'єкта
+var data = {
+    id: 1,
+    price: 10.99,
+    permission: ["read", "write"],
+    details: {
+        title: "New product",
+        description: "This is awesome product!",
+    },
+};
+// Опціональні параметри та властивості. Використовуючи оператор ?, ми можемо вказати, що це опціональний параметр або властивість. Якщо ми вказали parametr?, ми можемо його не передавати під час виклику функції, якщо ми приберемо ?, то отримаємо помилку.
+// type CustomType = {
+//   name: string;
+//   sex?: "man" | "woman";
+// };
+// const persona: CustomType = {
+//   name: "Don",
+// };
+// persona.sex = "man";
+// tasks
+var age;
+age = 50;
+var myname;
+myname = "Dima";
+var toggle;
+toggle = true;
+var empty1;
+empty1 = null;
+var notInitialize;
+notInitialize = undefined;
+var callback1 = function (a) {
+    return 100 + a;
+};
+callback1 = function (a) {
+    return 100 + a;
+};
+var anything;
+anything = -20;
+anything = "text";
+var some2;
+some2 = "Text";
+var str11;
+if (typeof some2 === "string") {
+    str11 = some2;
+}
+var someUnknown;
+someUnknown = 10;
+var numNumber;
+if (typeof someUnknown === "number") {
+    numNumber = someUnknown;
+}
+var user;
+user = ["Dima", 25];
+var Load;
+(function (Load) {
+    Load[Load["LOADING"] = 0] = "LOADING";
+    Load[Load["READY"] = 1] = "READY";
+})(Load || (Load = {}));
+var page = {
+    load: Load.READY,
+};
+if (page.load === Load.LOADING) {
+    console.log("Loading...");
+}
+if (page.load === Load.READY) {
+    console.log("is load");
+}
+var unionLet;
+var word;
+function showMessage(message) {
+    console.log(message);
+}
+function calculate(num1, num2) {
+    return num1 + num2;
+}
+function customError() {
+    throw new Error("Error");
+}
+var page2 = {
+    title: "Python or Js",
+    likes: 5,
+    accounts: ["Alex"],
+    status: "close",
+};

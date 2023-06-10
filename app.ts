@@ -144,8 +144,128 @@ generateError("An error", 500);
 // Припустимо, нам потрібно прокинути функцію в аргумент, але ми хочемо певну функцію, з якою вміємо працювати.
 // Зробимо калькулятор і туди передаватимемо callback, який буде рахувати два аргументи.
 
-function calc(param1: number, param2: number, callback: (num1: number, num2: number) => number): void {
+function calc(param1: number, param2: number, callback: (num10: number, num20: number) => number): void {
   console.log("Result:", callback(param1, param2));
 }
-calc(1, 1, (num1, num2) => num1 + num2);
-calc(10, 5, (num1, num2) => num1 - num2);
+calc(1, 1, (num10, num20) => num10 + num20);
+calc(10, 5, (num10, num20) => num10 - num20);
+
+// Custom Types - Ми можемо створювати свої типи, це дуже спрощує розробку. Тип створюється за допомогою команди type, ім'я типу задається з великої літери.
+// Опишемо тип
+type DatabaseDate = {
+  id: number;
+  price: number;
+  permission: string[];
+  details: {
+    title: string;
+    description?: string;
+  };
+};
+
+// Призначимо тип для об'єкта
+const data: DatabaseDate = {
+  id: 1,
+  price: 10.99,
+  permission: ["read", "write"],
+  details: {
+    title: "New product",
+    description: "This is awesome product!",
+  },
+};
+
+// Опціональні параметри та властивості. Використовуючи оператор ?, ми можемо вказати, що це опціональний параметр або властивість. Якщо ми вказали parametr?, ми можемо його не передавати під час виклику функції, якщо ми приберемо ?, то отримаємо помилку.
+// type CustomType = {
+//   name: string;
+//   sex?: "man" | "woman";
+// };
+// const persona: CustomType = {
+//   name: "Don",
+// };
+// persona.sex = "man";
+
+// tasks
+let age: number;
+age = 50;
+let myname: string;
+myname = "Dima";
+let toggle: boolean;
+toggle = true;
+let empty1: null;
+empty1 = null;
+let notInitialize: undefined;
+notInitialize = undefined;
+let callback1 = (a: number): number => {
+  return 100 + a;
+};
+callback1 = (a) => {
+  return 100 + a;
+};
+
+let anything: any;
+anything = -20;
+anything = "text";
+
+let some2: unknown;
+some2 = "Text";
+let str11: string;
+if (typeof some2 === "string") {
+  str11 = some2;
+}
+
+let someUnknown: unknown;
+someUnknown = 10;
+let numNumber: number;
+if (typeof someUnknown === "number") {
+  numNumber = someUnknown;
+}
+
+let user: [string, number];
+user = ["Dima", 25];
+
+enum Load {
+  LOADING,
+  READY,
+}
+const page = {
+  load: Load.READY,
+};
+if (page.load === Load.LOADING) {
+  console.log("Loading...");
+}
+if (page.load === Load.READY) {
+  console.log("is load");
+}
+
+let unionLet: string | number;
+
+let word: "enable" | "disable";
+
+function showMessage(message: string): void {
+  console.log(message);
+}
+
+function calculate(num1: number, num2: number): number {
+  return num1 + num2;
+}
+
+function customError(): never {
+  throw new Error("Error");
+}
+
+type Page = {
+  title: string;
+  likes: number;
+  accounts: string[];
+  status: "open" | "close";
+  details?: {
+    createAt: Date;
+    updateAt: Date;
+  };
+};
+
+const page2: Page = {
+  title: "Python or Js",
+  likes: 5,
+  accounts: ["Alex"],
+  status: "close",
+};

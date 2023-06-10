@@ -1,0 +1,6 @@
+{
+  "compilerOptions": {
+    // игнорирует недостежимый код
+    "allowUnreachableCode": true
+  }
+}
