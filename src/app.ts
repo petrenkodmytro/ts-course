@@ -205,19 +205,19 @@ let anything: any;
 anything = -20;
 anything = "text";
 
-let some2: unknown;
-some2 = "Text";
-let str11: string;
-if (typeof some2 === "string") {
-  str11 = some2;
-}
+// let some2: unknown;
+// some2 = "Text";
+// let str11: string;
+// if (typeof some2 === "string") {
+//   str11 = some2;
+// }
 
-let someUnknown: unknown;
-someUnknown = 10;
-let numNumber: number;
-if (typeof someUnknown === "number") {
-  numNumber = someUnknown;
-}
+// let someUnknown: unknown;
+// someUnknown = 10;
+// let numNumber: number;
+// if (typeof someUnknown === "number") {
+//   numNumber = someUnknown;
+// }
 
 let user: [string, number];
 user = ["Dima", 25];
