@@ -74,16 +74,16 @@ fixed = ["Text", 10]; // Якщо поміняємо місцями, то отр
 // Enum - Це навіть патерн, в typeScript вирішили додати його як тип даних.
 // За правилами гарного тону змінна, яка в enum, починається з великої літери.
 // Як це можна застосувати, припустимо, у нас є користувач, у якого є права.
-enum Role {
-  ADMIN,
-  USER,
-}
-const person = {
-  role: Role.ADMIN,
-};
-if (person.role === Role.ADMIN) {
-  console.log("Role: ", Role.ADMIN);
-}
+// enum Role {
+//   ADMIN,
+//   USER,
+// }
+// const person = {
+//   role: Role.ADMIN,
+// };
+// if (person.role === Role.ADMIN) {
+//   console.log("Role: ", Role.ADMIN);
+// }
 
 // Union Type - змінна або аргумент може містити кілька типів. Типи перелічуються через |
 let union: string | number;

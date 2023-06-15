@@ -37,17 +37,6 @@ some1 = 10;
 let num2;
 let fixed;
 fixed = ["Text", 10];
-var Role;
-(function (Role) {
-    Role[Role["ADMIN"] = 0] = "ADMIN";
-    Role[Role["USER"] = 1] = "USER";
-})(Role || (Role = {}));
-const person = {
-    role: Role.ADMIN,
-};
-if (person.role === Role.ADMIN) {
-    console.log("Role: ", Role.ADMIN);
-}
 let union;
 union = "Text";
 union = 10;
