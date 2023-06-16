@@ -1,13 +1,4 @@
 "use strict";
-const button = document.querySelector("button");
-const input1 = document.getElementById("num1");
-const input2 = document.getElementById("num2");
-function add(num1, num2) {
-    return num1 + num2;
-}
-button.addEventListener("click", function () {
-    console.log(add(+input1.value, +input2.value));
-});
 let num;
 let str;
 let bool;
@@ -135,4 +126,4 @@ const page2 = {
     accounts: ["Alex"],
     status: "close",
 };
-//# sourceMappingURL=app.js.map
+//# sourceMappingURL=lesson-2.js.map
