@@ -101,3 +101,66 @@ function checkUser(name: string, type: "admin" | "user") {
 
 const userUnknown = checkUser("Nikita", "user");
 const admin = checkUser("Tonya", "admin");
+
+//Generics - узагальнений тип
+let arr: Array<string | number> = [];
+// Оскільки Promise може повернути все, що завгодно, без дженерика ми ніколи не будемо знати, що він повертає.
+const promise: Promise<string> = new Promise((resolve) => {
+  setInterval(() => {
+    resolve("Done");
+  }, 2000);
+});
+promise.then((data) => {
+  console.log(data);
+});
+
+// Generic function/method
+// T and U - довільна назва параметрів
+function merge<T, U>(objA: T, objB: U) {
+  return Object.assign({}, objA, objB);
+}
+const merged = merge({ name: "Alisa" }, { age: 28 });
+console.log(merged.name);
+// Ми також можемо передавати типи під час виклику функції.
+type Name = {
+  name: string;
+};
+type Age = {
+  age: number;
+};
+const merged1 = merge<Name, Age>({ name: "Dima" }, { age: 30 });
+
+// Extends
+// У функцію merge ми можемо передавати не тільки об'єкти в merge, і це не добре, хотілося б, щоб була помилка, коли ми передамо не об'єкт. Для цього ми можемо розширювати тим, використовуючи команду extends.
+function mergeNew<T extends object, U extends object>(objA: T, objB: U) {
+  return Object.assign(objA, objB);
+}
+const mergedNew = mergeNew({ name: "Alisa" }, { age: 20 });
+merged.name;
+
+// keyof
+// У нас на практиці напевно виникне потреба повернути значення з об'єкта, але, навіть якщо ви напишите дженерики, ви отримаєте помилку. Оскільки TS не може гарантувати, що цей ключ є в об'єкті. Для цього є спеціальний оператор keyof. Він дозволяє зробити уточнення, що якийсь тип є ключем в об'єкті.
+function extractValue<T extends object, U extends keyof T>(obj: T, key: U) {
+  // За допомогою U extends keyof T ми зробили уточнення, що тип U - це як ключ у типі T і тепер все працює.
+  console.log(obj[key]);
+  return obj[key];
+}
+extractValue({ name: "Dima" }, "name");
+
+//Generic Classes
+// Ми можемо призначити дженерики на клас, це буває зручно, якщо ми хочемо ніби позначити тип, який пронизуватиме увесь клас.
+class StoreClass<T> {
+  private data: T[] = [];
+  addItem(item: T): void {
+    this.data.push(item);
+  }
+  getItem(): T[] {
+    console.log("data", this.data);
+    return this.data;
+  }
+}
+// І якщо передамо туди не той тип, буде помилка.
+const storeClass = new StoreClass<string>();
+storeClass.addItem("test-1");
+storeClass.addItem("test-2");
+storeClass.getItem();
