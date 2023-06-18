@@ -107,7 +107,7 @@ let arr: Array<string | number> = [];
 // Оскільки Promise може повернути все, що завгодно, без дженерика ми ніколи не будемо знати, що він повертає.
 const promise: Promise<string> = new Promise((resolve) => {
   setInterval(() => {
-    resolve("Done");
+    resolve("Promise Resolve Done after 1 s");
   }, 2000);
 });
 promise.then((data) => {
@@ -164,3 +164,85 @@ const storeClass = new StoreClass<string>();
 storeClass.addItem("test-1");
 storeClass.addItem("test-2");
 storeClass.getItem();
+
+// Utility Types - Є типи, які спрощують нам життя, всі вони засновані на дженериках.
+// Partial - коли у вас є якийсь тип даних, і там всі поля обов'язкові, але ви не можете заповнити їх відразу, але впевнені, що в результаті заповните. Для цього можна скористатися типом Partial, як я казав, це все дженерики.
+interface INewPerson {
+  name: string;
+  age: number;
+}
+function createNewPerson(name: string): INewPerson {
+  // Ми сказали, що person є типом Partial<IPerson>, і тепер всі поля стали опціональними.
+  const myPerson: Partial<INewPerson> = {};
+  myPerson.name = name;
+  myPerson.age = 35;
+  // Але при поверненні з функції нам потрібно вказати тип, інакше буде помилка.
+  return myPerson as INewPerson;
+}
+
+// Readonly
+const arrReadonly: Readonly<string[]> = ["one", "two", "three"];
+// не можна тепер модифікувати цей масив
+// arrReadonly.push('four')
+
+// Pick - зручний тип даних, якщо нам потрібно якось урізати тип, взяти частину полів із нього. Ми, наприклад, робимо сторінку анотацій і нам із типу Page потрібно лише кілька полів.
+interface PageTitle {
+  title: string;
+  annotation: string;
+  numberPage: number;
+}
+const pageAnnotation: Pick<PageTitle, "annotation" | "numberPage"> = {
+  annotation: "cmall page",
+  numberPage: 1,
+};
+
+// Практика
+// Є функція, яка повертає Promise, він повертає масив рядків і чисел, опишіть правильно тип.
+console.log("Practic");
+function getPromise(): Promise<Array<string | number>> {
+  return new Promise((resolve) => {
+    resolve(["Text", 50]);
+  });
+}
+getPromise().then((data) => {
+  console.log(data);
+});
+
+// У вас є наступний тип даних
+type AllType = {
+  name: string;
+  position: number;
+  color: string;
+  weight: number;
+};
+// Є функція, вона приймає два аргументи, в один потрапляє name і color, в іншу частину - position і weight. Потрібно явно вказати, що ці поля з AllType. І сама функція повертає AllType. Скористайтеся Pick.
+function compare(top: Pick<AllType, "name" | "color">, bottom: Pick<AllType, "position" | "weight">): AllType {
+  return {
+    name: top.name,
+    color: top.color,
+    position: bottom.position,
+    weight: bottom.weight,
+  };
+}
+
+// Вкажіть дженерики для функції об'єднання об'єктів.
+function mergeObj<T extends object, U extends object>(objA: T, objB: U) {
+  return Object.assign(objA, objB);
+}
+
+// У вас є наступні класи
+// Тільки додаючи дженерики для класів та інтерфейс, приберіть помилку.
+class Component<T> {
+  constructor(public props: T) {}
+}
+interface IProps {
+  title: string;
+}
+
+class PageHome extends Component<IProps> {
+  pageInfo() {
+    console.log('PageHome title:',this.props.title);
+  }
+}
+const pageHome = new PageHome({ title: "Title" });
+pageHome.pageInfo();

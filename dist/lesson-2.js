@@ -126,4 +126,3 @@ const page2 = {
     accounts: ["Alex"],
     status: "close",
 };
-//# sourceMappingURL=lesson-2.js.map

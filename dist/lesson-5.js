@@ -49,7 +49,7 @@ const admin = checkUser("Tonya", "admin");
 let arr = [];
 const promise = new Promise((resolve) => {
     setInterval(() => {
-        resolve("Done");
+        resolve("Promise Resolve Done after 1 s");
     }, 2000);
 });
 promise.then((data) => {
@@ -87,4 +87,46 @@ const storeClass = new StoreClass();
 storeClass.addItem("test-1");
 storeClass.addItem("test-2");
 storeClass.getItem();
-//# sourceMappingURL=lesson-5.js.map
+function createNewPerson(name) {
+    const myPerson = {};
+    myPerson.name = name;
+    myPerson.age = 35;
+    return myPerson;
+}
+const arrReadonly = ["one", "two", "three"];
+const pageAnnotation = {
+    annotation: "cmall page",
+    numberPage: 1,
+};
+console.log("Practic");
+function getPromise() {
+    return new Promise((resolve) => {
+        resolve(["Text", 50]);
+    });
+}
+getPromise().then((data) => {
+    console.log(data);
+});
+function compare(top, bottom) {
+    return {
+        name: top.name,
+        color: top.color,
+        position: bottom.position,
+        weight: bottom.weight,
+    };
+}
+function mergeObj(objA, objB) {
+    return Object.assign(objA, objB);
+}
+class Component {
+    constructor(props) {
+        this.props = props;
+    }
+}
+class PageHome extends Component {
+    pageInfo() {
+        console.log('PageHome title:', this.props.title);
+    }
+}
+const pageHome = new PageHome({ title: "Title" });
+pageHome.pageInfo();
